@@ -3,7 +3,7 @@
 <p>Тут будет несколько букмарклетов для ... Как обычно, букмарклет надо перетащить к себе в закладки (можно завести для этого папочку) и запускать на соответствующей странице.</p>
 <h2>Страница конкретного поста</h2>
 <ul>
-<li><a href="javascript:Array.forEach(document.querySelectorAll('.post'),function(post){var id=/u(\d+)/.exec(post.className);if(id){id=" ("+id[1]+")";var usr=post.querySelector('a[href^="/users"]');if(usr&&usr.innerText.indexOf(id)==-1){usr.innerText+=id;}}})">show ids</a> - показать радом с логинами идентификаторы пользователей;</li>
+<li><a href="javascript:Array.forEach(document.querySelectorAll('.post'),function(post){var id=/u(\d+)/.exec(post.className);if(id){id=' ('+id[1]+')';var usr=post.querySelector('a[href^=\"/users\"]');if(usr&&usr.innerText.indexOf(id)==-1){usr.innerText+=id;}}})">show ids</a> - показать радом с логинами идентификаторы пользователей;</li>
 </ul>
 </body>
 </html>
