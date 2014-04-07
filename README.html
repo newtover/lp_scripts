@@ -5,7 +5,7 @@
 
 <h2>Страница конкретного поста</h2>
 <ul>
-<li><a href="javascript:Array.forEach(document.querySelectorAll('.post'),function(post){var id=/u(\d+)/.exec(post.className);if(id){id=' ('+id[1]+')';var usr=post.querySelector('a[href^=%22/users%22]');if(usr&&usr.innerText.indexOf(id)==-1){usr.innerText+=id;}}})">show ids</a> - показать рядом с логинами идентификаторы пользователей;</li>
+<li><a href="javascript:(function(){var posts=document.querySelectorAll('.post'),l=posts.length;function showPostId(post){var id=/u(\d+)/.exec(post.className);if(id){id=' ('+id[1]+')';var usr=post.querySelector('a[href^=%22/users%22]');if(usr&&usr.innerText.indexOf(id)==-1){usr.innerText +=id;}}};function processChunk(i){var stop=i+3;for(;i<stop&&i<l;i++){showPostId(posts[i]);};console.info(i);if(stop<l){setTimeout(function(){processChunk(i);},100);}};processChunk(0);})()">show ids</a> - показать рядом с логинами идентификаторы пользователей;</li>
 </ul>
 </body>
 </html>
