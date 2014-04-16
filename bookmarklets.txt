@@ -1,0 +1,14 @@
+Тут будут букмарклеты для лепры (пишу их для хрома, но должны работать и в FF).
+
+Что такое букмарклет и как ими пользоваться, можно почитать тут: http://ru.wikipedia.org/wiki/%C1%F3%EA%EC%E0%F0%EA%EB%E5%F2
+
+Чтобы вставить их в href ссылки, надо кое-чего поэскейпить, но мне лень, ибо если вставлять напрямую в закладку, то браузеру все равно.
+
+Букмарклеты - штука хорошая, %username%, но будь на чеку, чтобы злодеи не украли у тебя лепрокуку!
+
+- Страница поста
+-- показать id комментирующих:
+javascript:(function(){var posts=document.querySelectorAll('.post'),l=posts.length;function showPostId(post){var id=/u(\d+)/.exec(post.className);if(id){id=' ('+id[1]+')';var usr=post.querySelector('a[href^=%22/users%22],a[href^=%22http://leprosorium.ru/users%22]');if(usr&&usr.innerText.indexOf(id)==-1){usr.innerText +=id;}}};function processChunk(i){var stop=i+3;for(;i<stop&&i<l;i++){showPostId(posts[i]);};console.info(i);if(stop<l){setTimeout(function(){processChunk(i);},100);}};processChunk(0);})()
+
+-- Пометить новыми комментарии за последние N минут
+javascript:(function(){var n=prompt('Сейчас помечу новыми все за последние N минут. Вписывай N');if(!(n&&parseInt(n)>1)){n=10;};var ps=document.querySelectorAll('.post'),l=ps.length,d=new Date(new Date().getTime()-parseInt(n)*60*1000);ed=function(p){var m=/(\d{2})[.](\d{2})[.](\d{4}) в (\d{2})[.](\d{2})/.exec(p.querySelector('.dd').textContent);return new Date(m[3]+'-'+m[2]+'-'+m[1]+'T'+m[4]+':'+m[5]+':00+0400')};fn=function(p, d){var dp=ed(p);if(dp>d){$(p).addClass('new')}else{$(p).removeClass('new')}};pc=function(i){var stop=i+3;for(;i<stop&&i<l;i++){fn(ps[i],d)};if(stop<l){setTimeout(function(){pc(i)},100)}};pc(1);})()
