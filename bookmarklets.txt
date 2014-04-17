@@ -12,3 +12,11 @@ javascript:(function(){var posts=document.querySelectorAll('.post'),l=posts.leng
 
 -- Пометить новыми комментарии за последние N минут
 javascript:(function(){var n=prompt('Сейчас помечу новыми все за последние N минут. Вписывай N');if(!(n&&parseInt(n)>1)){n=10;};var ps=document.querySelectorAll('.post'),l=ps.length,d=new Date(new Date().getTime()-parseInt(n)*60*1000);ed=function(p){var m=/(\d{2})[.](\d{2})[.](\d{4}) в (\d{2})[.](\d{2})/.exec(p.querySelector('.dd').textContent);return new Date(m[3]+'-'+m[2]+'-'+m[1]+'T'+m[4]+':'+m[5]+':00+0400')};fn=function(p, d){var dp=ed(p);if(dp>d){$(p).addClass('new')}else{$(p).removeClass('new')}};pc=function(i){var stop=i+3;for(;i<stop&&i<l;i++){fn(ps[i],d)};if(stop<l){setTimeout(function(){pc(i)},100)}};pc(1);})()
+
+-- Навигация по новым постам (первая - вниз, вторая вверх). То же самое можно делать при помощи Ctrl+↓, но иногда хочется все делать мышью (хинт: назвать закладки ↓ и ↑ и положить на панель). 
+javascript:(function(){var d=document,np=d.querySelector('.post.new:not(.last_new)');if(np){$(np).addClass('last_new');location='#'+np.getAttribute('id')}})()
+
+javascript:(function(){var d=document,lps=d.querySelectorAll('.post.last_new');if(!lps.length)return;$(lps[lps.length-1]).removeClass('last_new');lp=lps[lps.length-1];if(lp)location='#'+lp.getAttribute('id')})()
+
+-----
+Есть вопросы и пожелания  - пиши в инбокс.
